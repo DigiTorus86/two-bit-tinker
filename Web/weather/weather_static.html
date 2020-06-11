@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather Demo</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	
+	<link rel="stylesheet" href="Site.css">
+	
+	<link rel="apple-touch-icon" sizes="57x57" href="image/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="image/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="image/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="image/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="image/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="image/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="image/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="image/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="image/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="image/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="image/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="image/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="image/favicon/favicon-16x16.png">
+	<link rel="manifest" href="image/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="image/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+<p> 
+	<img style="vertical-align:middle" src="image/weather-icon.png" width="125" height="125" valign="middle"/>
+	<span class="title">&nbsp;Current Weather&nbsp;&nbsp;</span>
+	<span class="conversion">{{myCurrentDateTime}}</span>
+</p>
+
+<div class="grid">
+
+	<div class="module">
+		<div class="module-header">
+			<img style="vertical-align:middle" src="image/weather/sun-temperature45.png" />
+			<span>Temperature</span>
+		</div>
+		<div class="module-readings">
+			<img style="vertical-align:middle" src="image/weather/sun-temperature90.png" />
+			<span class="reading">{{myTemperatureF}}&deg;F</span>
+			<span class="conversion">{{myTemperatureC}}&deg;C</span>
+		</div>
+	</div>
+
+	<div class="module">
+		<div class="module-header">
+			<img style="vertical-align:middle" src="image/weather/clouds45.png" />
+			<span>Relative Humidity</span>
+		</div>
+		<div class="module-readings">
+			<img style="vertical-align:middle" src="image/weather/clouds90.png" />
+			<span class="reading">{{myHumidity}}%</span>
+		</div>
+	</div>
+	
+	<div class="module">
+		<div class="module-header">
+			<img style="vertical-align:middle" src="image/weather/temperature45.png" />
+			<span>Internal Temperature</span>
+		</div>
+		<div class="module-readings">
+			<img style="vertical-align:middle" src="image/weather/temperature90.png" />
+			<span class="reading">{{myInternalTemperatureF}}&deg;F</span>
+			<span class="conversion">{{myInternalTemperatureC}}&deg;C</span>
+		</div>
+	</div>	
+
+	<div class="module">
+		<div class="module-header">
+			<img style="vertical-align:middle" src="image/weather/barometer45.png" />
+			<span>Barometric Pressure</span>
+		</div>
+		<div class="module-readings">
+			<img style="vertical-align:middle" src="image/weather/barometer90.png" />
+			<span class="reading">{{myBarometricPressure}}</span>
+			<span class="conversion">pascals</span>
+		</div>
+	</div>
+	
+	<div class="module">
+		<div class="module-header">
+			<img style="vertical-align:middle" src="image/weather/altitude45.png" />
+			<span>Altitude</span>
+		</div>
+		<div class="module-readings">
+			<img style="vertical-align:middle" src="image/weather/altitude90.png" />
+			<span class="reading">{{myAltitudeM}}</span><span class="conversion">m</span>
+			<span class="conversion">{{myAltitudeFt}} ft</span>
+		</div>
+	</div>	
+
+	<div class="module">
+		<div class="module-header">
+			<img style="vertical-align:middle" src="image/weather/wind45.png" />
+			<span>Wind Speed</span>
+		</div>
+		<div class="module-readings">
+			<img style="vertical-align:middle" src="image/weather/wind90.png" />
+			<span class="reading">{{myCurrentWindSpeedMph}}</span>
+			<span class="conversion">mph {{myCurrentWindSpeedKph}} kph</span>
+		</div>
+		<div>
+			<span class="conversion">Min: {{myWindSpeedMinimumMph}} mph &nbsp;&nbsp; {{myWindSpeedMinimumKph}} kph</span><br/>
+			<span class="conversion">Max: {{myWindSpeedMaximumMph}} mph &nbsp;&nbsp; {{myWindSpeedMaximumKph}} kph</span>
+		</div>
+	</div>	
+	
+	<div class="module">
+		<div class="module-header">
+			<img style="vertical-align:middle" src="image/weather/windsock45.png" />
+			<span>Wind Gust</span>
+		</div>
+		<div class="module-readings">
+			<img style="vertical-align:middle" src="image/weather/windsock90.png" />
+			<span class="reading">{{myCurrentWindGustMph}}</span>
+			<span class="conversion">mph {{myCurrentWindGustKph}} kph</span>
+		</div>
+		<div>
+			<span class="conversion">Min: {{myWindGustMinimumMph}} mph &nbsp;&nbsp; {{myWindGustMinimumKph}} kph</span><br/>
+			<span class="conversion">Max: {{myWindGustMaximumMph}} mph &nbsp;&nbsp; {{myWindGustMaximumKph}} kph</span>
+		</div>
+	</div>	
+	
+	<div class="module">
+		<div class="module-header">
+			<img style="vertical-align:middle" src="image/weather/weathervane45.png" />
+			<span>Wind Direction</span>
+		</div>
+		<div class="module-readings">
+			<img style="vertical-align:middle" src="image/weather/weathervane90.png" />
+			<span class="reading">{{myCurrentWindDirectionCompass}}</span>
+			<span class="conversion">{{myCurrentWindDirectionDegrees}}&deg;</span>
+		</div>
+		<div>
+			<span class="conversion">Min: {{myWindDirectionMinimum}}&deg; &nbsp;&nbsp; Max: {{myWindDirectionMaximum}}&deg;</span><br/>
+		</div>
+	</div>	
+
+	<div class="module">
+		<div class="module-header">
+			<img style="vertical-align:middle" src="image/weather/rain45.png" />
+			<span>Rain Total</span>
+		</div>
+		<div class="module-readings">
+			<img style="vertical-align:middle" src="image/weather/rain90.png" />
+			<span class="reading">{{myRainTotalIn}} in</span>
+			<span class="conversion"></span>
+		</div>
+		<div>
+			<span class="conversion">{{myRainTotalMm}} mm</span>
+		</div>
+	</div>
+	
+	<div class="module">
+		<div class="module-header">
+			<img style="vertical-align:middle" src="image/weather/rainbow45.png" />
+			<span>Air Quality</span>
+		</div>
+		<div class="module-readings">
+			<img style="vertical-align:middle" src="image/weather/rainbow90.png" />
+			<span class="reading">{{myAirQualityReading}}</span>
+			<span class="conversion">{{myAirQualitySensor}}</span>
+		</div>
+		<div>
+			<span class="conversion"></span>
+		</div>
+	</div>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    		// static values for testing 
+		var fullDataString = "22.20,46.30,23.95,107059.00,191.36,0.00,0.00,90.00,0.00,0.00,0.00,0.00,0.00,90.00,90.00,0,05/06/2020 10:31:03,,0,-1,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,V:1,WXLMB ,0,,,0,,,0";
+      
+		var readings = fullDataString.split(',');
+		
+		//$scope.myWeather = JSON.stringify(response.data);
+		$scope.myTemperatureC = parseFloat(readings[0]).toFixed(0);
+		$scope.myTemperatureF = ToFahrenheit(readings[0]);
+		$scope.myHumidity = parseFloat(readings[1]).toFixed(0);
+		$scope.myInternalTemperatureC = parseFloat(readings[2]).toFixed(0);
+		$scope.myInternalTemperatureF = ToFahrenheit(readings[2]);
+		$scope.myBarometricPressure = parseFloat(readings[3]).toFixed(0);
+		$scope.myAltitudeM = parseFloat(readings[4]).toFixed(0);
+		$scope.myAltitudeFt = ToFeet(readings[4]);
+		$scope.myCurrentWindSpeedKph = parseFloat(readings[5]).toFixed(0);
+		$scope.myCurrentWindSpeedMph = ToMph(readings[5]);
+		$scope.myCurrentWindGustKph = parseFloat(readings[6]).toFixed(0);
+		$scope.myCurrentWindGustMph = ToMph(readings[6]);
+		$scope.myCurrentWindDirectionDegrees = parseFloat(readings[7]).toFixed(0);
+		$scope.myCurrentWindDirectionCompass = ToCompass(readings[7]);
+		$scope.myRainTotalMm = parseFloat(readings[8]).toFixed(2);
+		$scope.myRainTotalIn = ToInches(readings[8]);
+		$scope.myWindSpeedMinimumKph = parseFloat(readings[9]).toFixed(0);
+		$scope.myWindSpeedMinimumMph = ToMph(readings[9]);
+		$scope.myWindSpeedMaximumKph = parseFloat(readings[10]).toFixed(0);
+		$scope.myWindSpeedMaximumMph = ToMph(readings[10]);
+		$scope.myWindGustMinimumKph = parseFloat(readings[11]).toFixed(0);
+		$scope.myWindGustMinimumMph = ToMph(readings[11]);
+		$scope.myWindGustMaximumKph = parseFloat(readings[12]).toFixed(0);
+		$scope.myWindGustMaximumMph = ToMph(readings[12]);
+		$scope.myWindDirectionMinimum = readings[13];
+		$scope.myWindDirectionMaximum = readings[14];
+		//$scope.myEnglishOrMetric = readings[15];
+		$scope.myCurrentDateTime = readings[16];
+		//$scope.myStationName = readings[17];
+		$scope.myAirQualitySensor = readings[18];
+		$scope.myAirQualityReading = readings[19];
+});
+
+function ToFahrenheit(celsius)
+{
+	return parseFloat(celsius * 1.8 + 32).toFixed(0);
+}
+
+function ToFeet(meters)
+{
+	return parseFloat(meters * 3.28084).toFixed(0);
+}
+
+function ToInches(millimeters)
+{
+	return parseFloat(millimeters / 25.4).toFixed(3);
+}
+
+function ToMph(kph)
+{
+	return parseFloat(kph * 0.6213712).toFixed(0);
+}
+
+function ToCompass(degrees)
+{
+	if (degrees >= 0 && degrees <= 11.25)
+	{
+		return "N";
+	}
+	
+	if (degrees > 348.75 && degrees <= 360)
+	{
+		return "N";
+	}
+
+	if (degrees > 11.25 && degrees <= 33.75)
+	{
+		return "NNE";
+	}
+
+	if (degrees > 33.75 && degrees <= 56.25)
+	{
+		return "NE";
+	}
+
+	if (degrees > 56.25 && degrees <= 78.75)
+	{
+		return "ENE";
+	}
+
+	if (degrees > 78.75 && degrees <= 101.25)
+	{
+		return "E";
+	}
+
+	if (degrees > 101.25 && degrees <= 123.75)
+	{
+		return "ESE";
+	}
+
+	if (degrees > 123.75 && degrees <= 146.25)
+	{
+		return "SE";
+	}
+
+	if (degrees > 146.25 && degrees <= 168.75)
+	{
+		return "SSE";
+	}
+
+	if (degrees > 168.75 && degrees <= 191.25)
+	{
+		return "S";
+	}
+
+	if (degrees > 191.25 && degrees <= 213.75)
+	{
+		return "SSW";
+	}
+
+	if (degrees > 213.75 && degrees <= 236.25)
+	{
+		return "SW";
+	}
+
+	if (degrees > 236.25 && degrees <= 258.75)
+	{
+		return "WSW";
+	}
+
+	if (degrees > 258.75 && degrees <= 281.25)
+	{
+		return "W";
+	}
+
+	if (degrees > 281.25 && degrees <= 303.75)
+	{
+		return "WNW";
+	}
+
+	if (degrees > 303.75 && degrees <= 326.25)
+	{
+		return "NW";
+	}
+
+	if (degrees > 326.25 && degrees <= 348.75)
+	{ 
+		return "NNW"; 
+	}
+	
+	return "--";
+}
+</script> 
+
+
+</body>
+</html>
