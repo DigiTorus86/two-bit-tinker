@@ -4,7 +4,7 @@ WS2812b / Neopixel LED controller sketch.  Targeted for the ATtiny85, but runs o
 supported by the Adafruit Neopixel library.
 </p>
 <p>
-  ![alt text](https://raw.githubusercontent.com/DigiTorus86/two-bit-tinker/blob/master/images/ATtiny85-WS2812-schematic.png)
+  ![alt text](https://github.com.com/DigiTorus86/two-bit-tinker/blob/master/images/ATtiny85-WS2812-schematic.png)
 </p>
 
 
