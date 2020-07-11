@@ -1,4 +1,4 @@
-# ATtiny85-WS2812
+# ATtiny85-WS2812 Neopixel Controller
 <p>
 WS2812b / Neopixel LED controller sketch.  Targeted for the ATtiny85, but runs on most microcontrollers 
 supported by the Adafruit Neopixel library.  Includes Gerber files for custom PCB.
